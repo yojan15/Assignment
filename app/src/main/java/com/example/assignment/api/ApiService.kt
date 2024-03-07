@@ -9,3 +9,4 @@ interface ApiService {
     @POST("pro_app/pro_login/")
     suspend fun postData(@Body request: RequestBody): PostDataResponse
 }
+
