@@ -28,7 +28,24 @@
     </fragment>
     <fragment
         android:id="@+id/menuFragment"
-        android:name="com.example.assignment.MenuFragment"
+        android:name="com.example.assignment.fragments.menuFragment.MenuFragment"
         android:label="fragment_menu"
-        tools:layout="@layout/fragment_menu" />
+        tools:layout="@layout/fragment_menu" >
+        <action
+            android:id="@+id/action_menuFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_menuFragment_to_addressFragment"
+            app:destination="@id/addressFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.assignment.fragments.productsDetails.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/addressFragment"
+        android:name="com.example.assignment.fragments.addressFragment.AddressFragment"
+        android:label="fragment_address"
+        tools:layout="@layout/fragment_address" />
 </navigation>
