@@ -1,4 +1,4 @@
-package com.example.assignment
+package com.example.assignment.fragments.otpFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
