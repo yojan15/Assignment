@@ -54,7 +54,7 @@
     </fragment>
     <fragment
         android:id="@+id/getAllAddresses"
-        android:name="com.example.assignment.GetAllAddresses"
+        android:name="com.example.assignment.fragments.getAddress.GetAllAddresses"
         android:label="fragment_get_all_addresses"
         tools:layout="@layout/fragment_get_all_addresses" />
 </navigation>

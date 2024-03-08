@@ -1,4 +1,4 @@
-package com.example.assignment
+package com.example.assignment.fragments.getAddress
 
 import android.os.Bundle
 import android.util.Log
