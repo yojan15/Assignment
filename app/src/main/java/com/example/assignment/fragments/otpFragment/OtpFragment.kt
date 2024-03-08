@@ -58,7 +58,6 @@ class OtpFragment : Fragment() {
             .build()
         return retrofit.create(ApiServiceForOTP::class.java)
     }
-
     private fun showToast(message: String) {
         activity?.runOnUiThread {
             Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
