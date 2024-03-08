@@ -1,25 +1,15 @@
 package com.example.assignment.model
 
 data class AllAddress (
-    val addressList: List<AddressList>
+    val address_list: List<AddressList>?
 )
-
 data class AddressList (
-    val pincode: String,
+    val address_id: Long,
     val address: String,
-    val zone: Zone,
-    val city: City,
-    val addressID: Long,
-    val state: State
+    val pincode: String,
+    val locality: String?,
+    val google_address: String?,
+    val zone: String,
+    val state: String,
+    val city: String
 )
-enum class City {
-    Pune
-}
-
-enum class State {
-    Maharashtra
-}
-
-enum class Zone {
-    Kothrud
-}

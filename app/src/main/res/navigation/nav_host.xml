@@ -49,12 +49,12 @@
         android:label="fragment_address"
         tools:layout="@layout/fragment_address" >
         <action
-            android:id="@+id/action_addressFragment_to_getAllAddress"
-            app:destination="@id/getAllAddress" />
+            android:id="@+id/action_addressFragment_to_getAllAddresses"
+            app:destination="@id/getAllAddresses" />
     </fragment>
     <fragment
-        android:id="@+id/getAllAddress"
-        android:name="com.example.assignment.GetAllAddress"
-        android:label="fragment_get_all_address"
-        tools:layout="@layout/fragment_get_all_address" />
+        android:id="@+id/getAllAddresses"
+        android:name="com.example.assignment.GetAllAddresses"
+        android:label="fragment_get_all_addresses"
+        tools:layout="@layout/fragment_get_all_addresses" />
 </navigation>

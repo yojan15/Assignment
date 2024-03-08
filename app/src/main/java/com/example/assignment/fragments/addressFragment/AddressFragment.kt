@@ -35,7 +35,7 @@ class AddressFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = FragmentAddressBinding.inflate(inflater, container, false)
         binding.getAllAddress.setOnClickListener {
-            findNavController().navigate(R.id.action_addressFragment_to_getAllAddress)
+            findNavController().navigate(R.id.action_addressFragment_to_getAllAddresses)
         }
         return binding.root
     }
