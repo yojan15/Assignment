@@ -9,7 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.room.Room
+import com.example.assignment.R
 import com.example.assignment.apiObject.ApiManager
 import com.example.assignment.databinding.FragmentAddressBinding
 import com.example.assignment.model.AddressRequestBody
@@ -32,11 +34,16 @@ class AddressFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         binding = FragmentAddressBinding.inflate(inflater, container, false)
+        binding.getAllAddress.setOnClickListener {
+            findNavController().navigate(R.id.action_addressFragment_to_getAllAddress)
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
         db = Room.databaseBuilder(
             requireContext(),
             AppDatabase::class.java, "address-database"
