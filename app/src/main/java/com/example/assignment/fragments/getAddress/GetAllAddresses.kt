@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.assignment.adapters.AddressAdapter
 import com.example.assignment.apiObject.ApiManager
-import com.example.assignment.databinding.FragmentAddressBinding
 import com.example.assignment.databinding.FragmentGetAllAddressesBinding
 import com.example.assignment.model.AllAddress
 import retrofit2.Call
