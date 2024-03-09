@@ -34,7 +34,7 @@ class LoginFragment : Fragment() {
         binding = FragmentLoginBinding.inflate(inflater, container, false)
         binding.sendOTP.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_otpFragment)
-        }
+        }       // for testing UI
         return binding.root
     }
 
@@ -78,9 +78,9 @@ class LoginFragment : Fragment() {
                         it.Res_Data?.let { resData ->
                             val otp = resData.OTP
                             if (!otp.isNullOrBlank()) {
-                                notifyUser(otp)
+                                notifyUser(otp) // this will get the otp and send it to notify fun
+                                //where i have Toast to print the otp
 
-                                // Pass data to OtpFragment using a Bundle
                                 val bundle = Bundle().apply {
                                     putString("userPhoneNumber", userPhoneNumber)
                                     putString("otp", otp)

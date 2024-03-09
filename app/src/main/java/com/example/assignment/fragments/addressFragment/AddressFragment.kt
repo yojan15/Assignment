@@ -123,7 +123,7 @@ class AddressFragment : Fragment() {
                     showToast("Address added locally. Sync when online.")
                 }
             } else {
-                // Show an error message indicating that the address is empty
+              showToast("an error has occurred")
             }
         }
     }
