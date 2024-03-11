@@ -43,13 +43,42 @@ class AddressFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         db = Room.databaseBuilder(
             requireContext(),
             AppDatabase::class.java, "address-database"
         ).build()
 
         val apiService = ApiManager.apiService
+
+        if (isOnline()) {
+            CoroutineScope(Dispatchers.IO).launch {
+                val unsyncedAddresses = db.addressDao().getUnsyncedAddresses()
+                for (unsyncedAddress in unsyncedAddresses) {
+                    val request = AddressRequestBody(
+                        address = unsyncedAddress.address,
+                        city_id = 1,
+                        state_id = 1,
+                        prof_zone_id = 1,
+                        pincode = "456372",
+                        Address_type = "Permanent"
+                    )
+                    val call: Call<AddressListResponse> = apiService.addMultipleAddress(request)
+                    try {
+                        val response = call.execute()
+
+                        if (response.isSuccessful) {
+                            unsyncedAddress.isSynced = true
+                            db.addressDao().insertAddress(unsyncedAddress)
+                        } else {
+
+                            Log.e("AddressFragment", "Syncing failed for address: ${unsyncedAddress.address}")
+                        }
+                    } catch (e: Exception) {
+                        Log.e("AddressFragment", "Error syncing address: ${unsyncedAddress.address}", e)
+                    }
+                }
+            }
+        }
 
         binding.add.setOnClickListener {
             val address = binding.address.text.toString()
@@ -64,9 +93,8 @@ class AddressFragment : Fragment() {
                     Address_type = "Permanent"
                 )
 
-                // Check internet connectivity
                 if (isOnline()) {
-                    // Make Retrofit request
+
                     val call: Call<AddressListResponse> = apiService.addMultipleAddress(request)
 
                     call.enqueue(object : Callback<AddressListResponse> {
@@ -76,8 +104,6 @@ class AddressFragment : Fragment() {
                         ) {
                             if (response.isSuccessful) {
                                 val responseData = response.body()
-                                // Handle the successful response data
-                                // For example, show a Toast or navigate to another screen
                                 showToast("Address added successfully")
 
                                 // Mark the address as synced in Room
@@ -99,7 +125,7 @@ class AddressFragment : Fragment() {
                         }
                     })
                 } else {
-                    // Save the address in Room database with isSynced set to false
+
                     CoroutineScope(Dispatchers.IO).launch {
                         val unsyncedAddress = com.example.assignment.model.AddressData(
                             id = 0, // You might need to provide a proper ID value
@@ -119,15 +145,13 @@ class AddressFragment : Fragment() {
                         )
                         db.addressDao().insertAddress(unsyncedAddress)
                     }
-
                     showToast("Address added locally. Sync when online.")
                 }
             } else {
-              showToast("an error has occurred")
+                showToast("An error has occurred")
             }
         }
     }
-
     private fun showToast(message: String) {
         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
     }
